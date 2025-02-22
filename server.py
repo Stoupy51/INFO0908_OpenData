@@ -13,64 +13,64 @@ API_URL = "https://data.enseignementsup-recherche.gouv.fr/api/explore/v2.1/catal
 NB_ITEMS = requests.get(API_URL + "records").json()['total_count']
 print(NB_ITEMS)
 
-@app.route('/api/all-data', methods=['GET'])
+# retourne le dataset entier sous forme de json
+@app.route('/api/json', methods=['GET'])
 def get_all_data():
-    data  = requests.get(API_URL + "records?where=sexe%3D1").json()
-    NB_ITEMS = data['total_count']
+    data  = requests.get("https://data.enseignementsup-recherche.gouv.fr/api/explore/v2.1/catalog/datasets/fr-esr-parcours-et-reussite-des-bacheliers-en-licence/exports/json?lang=fr&timezone=Europe%2FBerlin").json()
     return jsonify(data)
 
-# récupérer le nb d’hommes
-@app.route('/api/nb-hommes-femmes', methods=['GET'])
-def get_nb_hommes(groupby = ""): # total # discipline # bac # mention bac
+# récupérer le nb d’hommes et de femmes
+@app.route('/api/nb-hommes-femmes/', methods=['GET'], defaults={'groupby': ""})
+@app.route('/api/nb-hommes-femmes/<string:groupby>', methods=['GET'])
+def get_nb_hommes(groupby):
     data_h = []
     data_f = []
-
-    for i in range(0, NB_ITEMS, 100):
-        req = json.loads(requests.get(API_URL + "records?select=effectif_neobacheliers_passage%2C%20effectif_neobacheliers_reussite&where=sexe%3D1&limit=100&offset=" + str(i)).json())
-        data_h += req["results"]
-        req = json.loads(requests.get(API_URL + "records?select=effectif_neobacheliers_passage%2C%20effectif_neobacheliers_reussite&where=sexe%3D2&limit=100&offset=" + str(i)).json())
-        data_f += req["results"]
+    assert groupby in ["","gd_discipline", "bac", "mention_bac"], "Valeur incorrecte de group_by"
 
     if groupby == "":
-        somme_h = [ligne["effectif_neobacheliers_passage"] + ligne["effectif_neobacheliers_reussite"] for ligne in data_h]
+        offset=0
+        repetition = True
+        while repetition:
+            req_h = requests.get(API_URL + "records?select=effectif_neobacheliers_passage%2C%20effectif_neobacheliers_reussite&where=sexe%3D1&limit=100&offset=" + str(offset)).json()
+            data_h += req_h["results"]
+            req_f = requests.get(API_URL + "records?select=effectif_neobacheliers_passage%2C%20effectif_neobacheliers_reussite&where=sexe%3D2&limit=100&offset=" + str(offset)).json()
+            data_f += req_f["results"]
+            if len(req_h["results"]) < 100 and len(req_f["results"]) < 100: # on a atteint la fin
+                repetition = False
+            offset += 100
+            
+        somme_h = [sum(filter(None,[ligne["effectif_neobacheliers_passage"],ligne["effectif_neobacheliers_reussite"]])) for ligne in data_h]
         somme_h = sum(somme_h)
-        somme_f = [ligne["effectif_neobacheliers_passage"] + ligne["effectif_neobacheliers_reussite"] for ligne in data_f]
+        somme_f = [sum(filter(None,[ligne["effectif_neobacheliers_passage"],ligne["effectif_neobacheliers_reussite"]])) for ligne in data_f]
         somme_f = sum(somme_f)
-        resultat = {"total_h":somme_h, "total_f":somme_f}
-    print(f"Affichage du nombre d'hommes et de femmes")
-    print(len(data_h),len(data_f), (len(data_h)+len(data_f)))
+        resultat = {"hommes":int(somme_h), "femmes":int(somme_f)}
+    else:
+        if groupby == "bac":
+            groupby = "serie_bac_lib"
+        elif groupby == "mention_bac":
+            groupby = "mention_bac_lib"
+
+        repetition = True
+        offset=0
+        while repetition:
+            req_h = requests.get(API_URL + "records?select=SUM(effectif_neobacheliers_passage)%2C%20SUM(effectif_neobacheliers_reussite)%2C%20"+groupby + "&where=sexe%3D1&group_by="+groupby+"&limit=100&offset=" + str(offset)).json()
+            data_h += req_h["results"]
+            req_f = requests.get(API_URL + "records?select=SUM(effectif_neobacheliers_passage)%2C%20SUM(effectif_neobacheliers_reussite)%2C%20"+groupby + "&where=sexe%3D2&group_by="+groupby+"&limit=100&offset=" + str(offset)).json()
+            data_f += req_f["results"]
+            if len(req_h["results"]) < 100 and len(req_f["results"]) < 100: # on a atteint la fin
+                repetition = False
+            offset += 100
+        
+        var = [ligne[groupby] for ligne in data_h]
+        var += [ligne[groupby] for ligne in data_f]
+        var = list(set(var))
+        resultat = {d:{"hommes":0,"femmes":0} for d in var}
+        for ligne in data_h:
+            resultat[ligne[groupby]]["hommes"] = int(sum(filter(None,[ligne["SUM(effectif_neobacheliers_passage)"],ligne["SUM(effectif_neobacheliers_reussite)"]])))
+        for ligne in data_f:
+            resultat[ligne[groupby]]["femmes"] = int(sum(filter(None,[ligne["SUM(effectif_neobacheliers_passage)"],ligne["SUM(effectif_neobacheliers_reussite)"]])))
+
     return jsonify(resultat)
-
-
-# récupérer la liste des différentes disciplines / grandes disciplines 
-@app.route('/api/disciplines', methods=['GET'])
-def get_disciplines():
-    data = requests.get(API_URL + "records?select=discipline").json()
-    # compter le nombre de disciplines distinctes
-    # nbDisciplines = 
-    return jsonify(data)
-
-
-# récupérer le nombre d’étudiants par disciplines / grandes disciplines
-@app.route('/api/nb-etudiants-disciplines', methods=['GET'])
-def get_nb_etudiants_disciplines():
-    data = requests.get(API_URL + "records?select=discipline").json()
-    return jsonify(data)
-
-
-# récupérer la liste des différentes mentions au Bac
-@app.route('/api/mentions-bac', methods=['GET'])
-def get_mentions_bac():
-    data = requests.get(API_URL + "records?select=mention_bac").json()
-    return jsonify(data)
-
-
-# récupérer le nombre d’étudiants par mention au bac
-@app.route('/api/nb-etudiants-mention-bac', methods=['GET'])
-def get_nb_etudiants_mention_bac():
-    data = requests.get(API_URL + "records?select=mention_bac").json()
-    return jsonify(data)
-
 
 
 if __name__ == '__main__':
