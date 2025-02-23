@@ -6,7 +6,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>🎓 Documentation INFO0908_OpenData &mdash; INFO0908_OpenData  documentation</title>
+  <title>🎓 INFO0908_OpenData &mdash; 🎓 INFO0908_OpenData  documentation</title>
       <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=80d5e7a1" />
       <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
 
@@ -31,7 +31,7 @@
           
           
           <a href="#" class="icon icon-home">
-            INFO0908_OpenData
+            🎓 INFO0908_OpenData
           </a>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
@@ -52,7 +52,7 @@
 
     <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="#">INFO0908_OpenData</a>
+          <a href="#">🎓 INFO0908_OpenData</a>
       </nav>
 
       <div class="wy-nav-content">
@@ -60,7 +60,7 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="#" class="icon icon-home" aria-label="Home"></a></li>
-      <li class="breadcrumb-item active">🎓 Documentation INFO0908_OpenData</li>
+      <li class="breadcrumb-item active">🎓 INFO0908_OpenData</li>
       <li class="wy-breadcrumbs-aside">
             <a href="_sources/index.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -70,26 +70,27 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="documentation-info0908-opendata">
-<h1>🎓 Documentation INFO0908_OpenData<a class="headerlink" href="#documentation-info0908-opendata" title="Link to this heading"></a></h1>
+  <section id="info0908-opendata">
+<h1>🎓 INFO0908_OpenData<a class="headerlink" href="#info0908-opendata" title="Link to this heading"></a></h1>
+<p>Basé sur une API, Parcours et réussite des bachelières et bacheliers inscrits pour la première fois en licence.</p>
+<p>L’API sur laquelle le projet est basé est disponible à l’adresse suivante : <a class="reference external" href="https://data.enseignementsup-recherche.gouv.fr/explore/dataset/fr-esr-parcours-et-reussite-des-bacheliers-en-licence/table/?sort=redoublement_en_l1">https://data.enseignementsup-recherche.gouv.fr/explore/dataset/fr-esr-parcours-et-reussite-des-bacheliers-en-licence/table/?sort=redoublement_en_l1</a></p>
+<p>Je vous conseille de regarder à quoi ressemble les données grâce à ce lien ou avec notre documentation.</p>
 <section id="overview">
 <h2>📚 Overview<a class="headerlink" href="#overview" title="Link to this heading"></a></h2>
-<p>Pour démarrer le serveur, exécutez le fichier <cite>server.py</cite> :
-<code class="docutils literal notranslate"><span class="pre">`bash</span>
-<span class="pre">python</span> <span class="pre">server.py</span>
-<span class="pre">`</span></code>
-Le serveur sera accessible à l’adresse <cite>http://localhost:5000/</cite>.</p>
+<p>Pour démarrer le serveur, exécutez le fichier <cite>server.py</cite> :</p>
+<p><cite>python server.py</cite></p>
+<p>Le serveur sera accessible à l’adresse <cite>http://localhost:5000/</cite>.</p>
 </section>
 <section id="project-structure">
 <h2>🚀 Project Structure<a class="headerlink" href="#project-structure" title="Link to this heading"></a></h2>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>INFO0908_OpenData/
-├──<span class="w"> </span>docs/<span class="w">               </span><span class="c1"># Documentation générée</span>
+├──<span class="w"> </span>docs/<span class="w">              </span><span class="c1"># Documentation générée</span>
 ├──<span class="w"> </span>models/<span class="w">            </span><span class="c1"># Modèles de ML entraînés</span>
 ├──<span class="w"> </span>src/<span class="w">               </span><span class="c1"># Code source</span>
-│<span class="w">   </span>├──<span class="w"> </span>ml/<span class="w">           </span><span class="c1"># Scripts de machine learning</span>
-│<span class="w">   </span>└──<span class="w"> </span>...<span class="w">           </span><span class="c1"># Autres modules</span>
-├──<span class="w"> </span>server.py<span class="w">         </span><span class="c1"># Point d&#39;entrée du serveur</span>
-└──<span class="w"> </span>requirements.txt<span class="w">  </span><span class="c1"># Dépendances Python</span>
+│<span class="w">   </span>├──<span class="w"> </span>ml/<span class="w">            </span><span class="c1"># Scripts de machine learning</span>
+│<span class="w">   </span>└──<span class="w"> </span>...<span class="w">            </span><span class="c1"># Autres modules</span>
+├──<span class="w"> </span>server.py<span class="w">          </span><span class="c1"># Point d&#39;entrée du serveur</span>
+└──<span class="w"> </span>requirements.txt<span class="w">   </span><span class="c1"># Dépendances Python</span>
 </pre></div>
 </div>
 </section>
@@ -105,6 +106,7 @@ Le serveur sera accessible à l’adresse <cite>http://localhost:5000/</cite>.</
 <li class="toctree-l5"><a class="reference internal" href="modules/src.ml.prediction_reussite.html">src.ml.prediction_reussite module</a><ul>
 <li class="toctree-l6"><a class="reference internal" href="modules/src.ml.prediction_reussite.html#src.ml.prediction_reussite.charger_modele"><code class="docutils literal notranslate"><span class="pre">charger_modele()</span></code></a></li>
 <li class="toctree-l6"><a class="reference internal" href="modules/src.ml.prediction_reussite.html#src.ml.prediction_reussite.entrainer_modeles"><code class="docutils literal notranslate"><span class="pre">entrainer_modeles()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="modules/src.ml.prediction_reussite.html#src.ml.prediction_reussite.prediction_reussite"><code class="docutils literal notranslate"><span class="pre">prediction_reussite()</span></code></a></li>
 <li class="toctree-l6"><a class="reference internal" href="modules/src.ml.prediction_reussite.html#src.ml.prediction_reussite.predire_reussite"><code class="docutils literal notranslate"><span class="pre">predire_reussite()</span></code></a></li>
 </ul>
 </li>
@@ -126,7 +128,16 @@ Le serveur sera accessible à l’adresse <cite>http://localhost:5000/</cite>.</
 <li class="toctree-l4"><a class="reference internal" href="modules/src.l2_et_reorientation.html#src.l2_et_reorientation.get_passage_l2_stats"><code class="docutils literal notranslate"><span class="pre">get_passage_l2_stats()</span></code></a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="modules/src.lists.html">src.lists module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="modules/src.lists.html">src.lists module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="modules/src.lists.html#src.lists.get_age_au_bac"><code class="docutils literal notranslate"><span class="pre">get_age_au_bac()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="modules/src.lists.html#src.lists.get_disciplines"><code class="docutils literal notranslate"><span class="pre">get_disciplines()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="modules/src.lists.html#src.lists.get_gd_disciplines"><code class="docutils literal notranslate"><span class="pre">get_gd_disciplines()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="modules/src.lists.html#src.lists.get_mentions_bac"><code class="docutils literal notranslate"><span class="pre">get_mentions_bac()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="modules/src.lists.html#src.lists.get_secteurs_disciplinaires"><code class="docutils literal notranslate"><span class="pre">get_secteurs_disciplinaires()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="modules/src.lists.html#src.lists.get_sexe"><code class="docutils literal notranslate"><span class="pre">get_sexe()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="modules/src.lists.html#src.lists.get_types_bac"><code class="docutils literal notranslate"><span class="pre">get_types_bac()</span></code></a></li>
+</ul>
+</li>
 <li class="toctree-l3"><a class="reference internal" href="modules/src.redoublement.html">src.redoublement module</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="modules/src.redoublement.html#src.redoublement.get_redoublement_par_discipline"><code class="docutils literal notranslate"><span class="pre">get_redoublement_par_discipline()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="modules/src.redoublement.html#src.redoublement.get_redoublement_par_gd_discipline"><code class="docutils literal notranslate"><span class="pre">get_redoublement_par_gd_discipline()</span></code></a></li>

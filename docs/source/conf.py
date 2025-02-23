@@ -5,7 +5,7 @@ import sys
 sys.path.insert(0, os.path.abspath('../..'))
 
 # Project information
-project = 'INFO0908_OpenData'
+project = '🎓 INFO0908_OpenData'
 copyright = '2024'
 author = 'INFO0908'
 

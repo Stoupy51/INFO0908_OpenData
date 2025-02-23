@@ -10,7 +10,7 @@ def get_gd_disciplines() -> list[str]:
     Returns:
         list[str]: la liste des différentes grandes disciplines
     Examples:
-        >>> requests.get(f"{OUR_API}/api/liste/gd_discipline").json()
+        >>> requests.get(f"http://localhost:5000/api/liste/gd_discipline").json()
         ['Santé', "Sciences et sciences de l'ingénieur", 'Droit, gestion, économie, AES', 'Lettres, langues et sciences humaines', 'STAPS']
     """
     data = fetch_data("select=gd_discipline_lib")
@@ -25,7 +25,7 @@ def get_disciplines() -> list[str]:
     Returns:
         list[str]: la liste des différentes disciplines
     Examples:
-        >>> requests.get(f"{OUR_API}/api/liste/discipline").json()
+        >>> requests.get(f"http://localhost:5000/api/liste/discipline").json()
         ['Pluridisciplinaire lettres, langues, sciences humaines', 'Lettres, sciences du langage, arts', 'STAPS', 'Sciences fondamentales et applications', 'Pluridisciplinaire sciences', 'Sciences humaines et sociales', 'Droit, sciences politiques', 'Administration économique et sociale', 'Sciences économiques, gestion', 'Médecine', 'Langues', "Sciences de la vie, de la terre et de l'univers"]
     """
     data = fetch_data("select=discipline_lib")
@@ -40,7 +40,7 @@ def get_secteurs_disciplinaires() -> list[str]:
     Returns:
         list[str]: la liste des différents secteurs disciplines
     Examples:
-        >>> requests.get(f"{OUR_API}/api/liste/secteurs_disciplinaire").json()[:10]
+        >>> requests.get(f"http://localhost:5000/api/liste/secteurs_disciplinaire").json()[:10]
         ['Sciences économiques', 'Mécanique, génie mécanique', 'Sciences juridiques', 'Pluridisciplinaire sciences', 'Langues étrangères appliquées', 'Sciences politiques', 'Géographie', 'Technologie et sciences industrielles', 'Administration économique et sociale', 'Pluridisciplinaire droit, sciences politiques']
     """
     data = fetch_data("select=sect_disciplinaire_lib")
@@ -55,7 +55,7 @@ def get_types_bac() -> list[str]:
     Returns:
         list[str]: la liste des types de bac
     Examples:
-        >>> requests.get(f"{OUR_API}/api/liste/types_bac").json()
+        >>> requests.get(f"http://localhost:5000/api/liste/types_bac").json()
         ['BAC STMG', 'BAC S', 'BAC L', 'BAC ES', 'BAC technologique hors STMG', 'BAC professionnel']
     """
     data = fetch_data("select=serie_bac_lib")
@@ -70,7 +70,7 @@ def get_mentions_bac() -> list[str]:
     Returns:
         list[str]: la liste des différentes mentions au Bac
     Examples:
-        >>> requests.get(f"{OUR_API}/api/liste/mentions_bac").json()
+        >>> requests.get(f"http://localhost:5000/api/liste/mentions_bac").json()
         ['Passable premier groupe', 'Assez bien', 'Très bien', 'Bien', 'Inconnue', 'Passable deuxième groupe']
     """
     data = fetch_data("select=mention_bac_lib")
@@ -85,7 +85,7 @@ def get_age_au_bac() -> list[str]:
     Returns:
         list[str]: la liste des différentes âges à l'obtention au Bac
     Examples:
-        >>> sorted(requests.get(f"{OUR_API}/api/liste/age_au_bac").json())
+        >>> sorted(requests.get(f"http://localhost:5000/api/liste/age_au_bac").json())
         ["A l'heure ou en avance", "En retard d'un an", "En retard de plus d'un an", 'Non pris en compte']
     """
     data = fetch_data("select=age_au_bac_lib")
@@ -100,7 +100,7 @@ def get_sexe() -> list[str]:
     Returns:
         list[str]: la liste des différentes séxualités
     Examples:
-        >>> requests.get(f"{OUR_API}/api/liste/sexe").json()
+        >>> requests.get(f"http://localhost:5000/api/liste/sexe").json()
         ['Homme', 'Femme']
     """
     data = fetch_data("select=sexe_lib")

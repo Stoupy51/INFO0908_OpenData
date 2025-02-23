@@ -83,7 +83,8 @@
 <span class="sd">    Returns:</span>
 <span class="sd">        dict: le nombre d&#39;étudiants ayant redoublé par grandes discipline</span>
 <span class="sd">    Examples:</span>
-<span class="sd">        &gt;&gt;&gt; requests.get(f&quot;{OUR_API}/api/redoublement/gd_discipline&quot;).json()</span>
+<span class="sd">        &gt;&gt;&gt; requests.get(f&quot;http://localhost:5000/api/redoublement/gd_discipline&quot;).json()</span>
+<span class="sd">        {&#39;Droit, gestion, économie, AES&#39;: 17728, &#39;Lettres, langues et sciences humaines&#39;: 16375, &#39;STAPS&#39;: 4527, &#39;Santé&#39;: 2, &quot;Sciences et sciences de l&#39;ingénieur&quot;: 7760}</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">data</span> <span class="o">=</span> <span class="n">fetch_data</span><span class="p">(</span><span class="s2">&quot;select=gd_discipline_lib,SUM(redoublement_en_l1)&amp;group_by=gd_discipline_lib&quot;</span><span class="p">)</span>
     <span class="n">result</span> <span class="o">=</span> <span class="p">{</span><span class="n">row</span><span class="p">[</span><span class="s1">&#39;gd_discipline_lib&#39;</span><span class="p">]:</span> <span class="nb">int</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="s1">&#39;SUM(redoublement_en_l1)&#39;</span><span class="p">])</span> <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">data</span><span class="p">}</span>
@@ -100,7 +101,8 @@
 <span class="sd">    Returns:</span>
 <span class="sd">        dict: le nombre d&#39;étudiants ayant redoublé par discipline</span>
 <span class="sd">    Examples:</span>
-<span class="sd">        &gt;&gt;&gt; requests.get(f&quot;{OUR_API}/api/redoublement/discipline&quot;).json()</span>
+<span class="sd">        &gt;&gt;&gt; requests.get(f&quot;http://localhost:5000/api/redoublement/discipline&quot;).json()</span>
+<span class="sd">        {&#39;Administration économique et sociale&#39;: 2559, &#39;Droit, sciences politiques&#39;: 11202, &#39;Langues&#39;: 6009, &#39;Lettres, sciences du langage, arts&#39;: 2667, &#39;Médecine&#39;: 2, &#39;Pluridisciplinaire lettres, langues, sciences humaines&#39;: 121, &#39;Pluridisciplinaire sciences&#39;: 1871, &#39;STAPS&#39;: 4527, &quot;Sciences de la vie, de la terre et de l&#39;univers&quot;: 2522, &#39;Sciences fondamentales et applications&#39;: 3367, &#39;Sciences humaines et sociales&#39;: 7578, &#39;Sciences économiques, gestion&#39;: 3967}</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">data</span> <span class="o">=</span> <span class="n">fetch_data</span><span class="p">(</span><span class="s2">&quot;select=discipline_lib,SUM(redoublement_en_l1)&amp;group_by=discipline_lib&quot;</span><span class="p">)</span>
     <span class="n">result</span> <span class="o">=</span> <span class="p">{</span><span class="n">row</span><span class="p">[</span><span class="s1">&#39;discipline_lib&#39;</span><span class="p">]:</span> <span class="nb">int</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="s1">&#39;SUM(redoublement_en_l1)&#39;</span><span class="p">])</span> <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">data</span><span class="p">}</span>
@@ -117,7 +119,8 @@
 <span class="sd">    Returns:</span>
 <span class="sd">        dict: le nombre d&#39;étudiants ayant redoublé par type de bac</span>
 <span class="sd">    Examples:</span>
-<span class="sd">        &gt;&gt;&gt; requests.get(f&quot;{OUR_API}/api/redoublement/type_bac&quot;).json()</span>
+<span class="sd">        &gt;&gt;&gt; requests.get(f&quot;http://localhost:5000/api/redoublement/type_bac&quot;).json()</span>
+<span class="sd">        {&#39;BAC ES&#39;: 12738, &#39;BAC L&#39;: 9415, &#39;BAC S&#39;: 10352, &#39;BAC STMG&#39;: 5079, &#39;BAC professionnel&#39;: 5286, &#39;BAC technologique hors STMG&#39;: 3522}</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">data</span> <span class="o">=</span> <span class="n">fetch_data</span><span class="p">(</span><span class="s2">&quot;select=serie_bac_lib,SUM(redoublement_en_l1)&amp;group_by=serie_bac_lib&quot;</span><span class="p">)</span>
     <span class="n">result</span> <span class="o">=</span> <span class="p">{</span><span class="n">row</span><span class="p">[</span><span class="s1">&#39;serie_bac_lib&#39;</span><span class="p">]:</span> <span class="nb">int</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="s1">&#39;SUM(redoublement_en_l1)&#39;</span><span class="p">])</span> <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">data</span><span class="p">}</span>
@@ -134,7 +137,8 @@
 <span class="sd">    Returns:</span>
 <span class="sd">        dict: le nombre d&#39;étudiants ayant redoublé par mention au bac</span>
 <span class="sd">    Examples:</span>
-<span class="sd">        &gt;&gt;&gt; requests.get(f&quot;{OUR_API}/api/redoublement/mention_bac&quot;).json()</span>
+<span class="sd">        &gt;&gt;&gt; requests.get(f&quot;http://localhost:5000/api/redoublement/mention_bac&quot;).json()</span>
+<span class="sd">        {&#39;Assez bien&#39;: 10409, &#39;Bien&#39;: 2392, &#39;Inconnue&#39;: 1376, &#39;Passable deuxième groupe&#39;: 9935, &#39;Passable premier groupe&#39;: 21772, &#39;Très bien&#39;: 508}</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">data</span> <span class="o">=</span> <span class="n">fetch_data</span><span class="p">(</span><span class="s2">&quot;select=mention_bac_lib,SUM(redoublement_en_l1)&amp;group_by=mention_bac_lib&quot;</span><span class="p">)</span>
     <span class="n">result</span> <span class="o">=</span> <span class="p">{</span><span class="n">row</span><span class="p">[</span><span class="s1">&#39;mention_bac_lib&#39;</span><span class="p">]:</span> <span class="nb">int</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="s1">&#39;SUM(redoublement_en_l1)&#39;</span><span class="p">])</span> <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">data</span><span class="p">}</span>

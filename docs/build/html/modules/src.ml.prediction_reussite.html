@@ -6,7 +6,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>src.ml.prediction_reussite module &mdash; INFO0908_OpenData  documentation</title>
+  <title>src.ml.prediction_reussite module &mdash; 🎓 INFO0908_OpenData  documentation</title>
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=80d5e7a1" />
       <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
 
@@ -32,7 +32,7 @@
           
           
           <a href="../index.html" class="icon icon-home">
-            INFO0908_OpenData
+            🎓 INFO0908_OpenData
           </a>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
@@ -63,7 +63,7 @@
 
     <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="../index.html">INFO0908_OpenData</a>
+          <a href="../index.html">🎓 INFO0908_OpenData</a>
       </nav>
 
       <div class="wy-nav-content">
@@ -87,7 +87,7 @@
 <span id="src-ml-prediction-reussite-module"></span><h1>src.ml.prediction_reussite module<a class="headerlink" href="#module-src.ml.prediction_reussite" title="Link to this heading"></a></h1>
 <dl class="py function">
 <dt class="sig sig-object py" id="src.ml.prediction_reussite.charger_modele">
-<span class="sig-prename descclassname"><span class="pre">src.ml.prediction_reussite.</span></span><span class="sig-name descname"><span class="pre">charger_modele</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">model_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="s"><span class="pre">'linear'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'rf'</span></span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">Any</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../_modules/src/ml/prediction_reussite.html#charger_modele"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.ml.prediction_reussite.charger_modele" title="Link to this definition"></a></dt>
+<span class="sig-prename descclassname"><span class="pre">src.ml.prediction_reussite.</span></span><span class="sig-name descname"><span class="pre">charger_modele</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">model_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="s"><span class="pre">'logistic'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'rf'</span></span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">Any</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../_modules/src/ml/prediction_reussite.html#charger_modele"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.ml.prediction_reussite.charger_modele" title="Link to this definition"></a></dt>
 <dd><p>Charge le modèle de prédiction du taux de réussite d”un étudiant</p>
 <ul class="simple">
 <li><p>Essaie de charger le modèle</p></li>
@@ -116,13 +116,60 @@
 </dd></dl>
 
 <dl class="py function">
+<dt class="sig sig-object py" id="src.ml.prediction_reussite.prediction_reussite">
+<span class="sig-prename descclassname"><span class="pre">src.ml.prediction_reussite.</span></span><span class="sig-name descname"><span class="pre">prediction_reussite</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">dict</span></span></span><a class="reference internal" href="../_modules/src/ml/prediction_reussite.html#prediction_reussite"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.ml.prediction_reussite.prediction_reussite" title="Link to this definition"></a></dt>
+<dd><p>Prédit le taux de réussite d’un étudiant à partir des données fournies.</p>
+<p>Cette fonction reçoit les informations d’un étudiant via des paramètres de requête
+et utilise un modèle préalablement entraîné pour prédire le taux de réussite.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>gd_discipline</strong> (<em>str</em>) – La grande discipline de l’étudiant.</p></li>
+<li><p><strong>discipline</strong> (<em>str</em>) – La discipline de l’étudiant.</p></li>
+<li><p><strong>sect_disciplinaire</strong> (<em>str</em>) – Le secteur disciplinaire de l’étudiant.</p></li>
+<li><p><strong>serie_bac</strong> (<em>str</em>) – La série du baccalauréat de l’étudiant.</p></li>
+<li><p><strong>age_au_bac</strong> (<em>str</em>) – L’âge de l’étudiant au moment du baccalauréat.</p></li>
+<li><p><strong>sexe</strong> (<em>str</em>) – Le sexe de l’étudiant.</p></li>
+<li><p><strong>mention_bac</strong> (<em>str</em>) – La mention obtenue au baccalauréat.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Un dictionnaire contenant le taux de réussite prédit.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>dict</p>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;http://localhost:5000/ml/prediction_reussite?gd_discipline=Lettres, langues et sciences humaines&amp;discipline=Langues&amp;sect_disciplinaire=Langues et littératures étrangères&amp;serie_bac=BAC STMG&amp;age_au_bac=A l&#39;heure ou en avance&amp;sexe=Homme&amp;mention_bac=Très bien&amp;model_name=logistic&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
+<span class="go">{&#39;taux_reussite&#39;: 0.24319507790674746}</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py function">
 <dt class="sig sig-object py" id="src.ml.prediction_reussite.predire_reussite">
-<span class="sig-prename descclassname"><span class="pre">src.ml.prediction_reussite.</span></span><span class="sig-name descname"><span class="pre">predire_reussite</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">etudiant</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">model_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="s"><span class="pre">'linear'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'rf'</span></span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">float</span></span></span><a class="reference internal" href="../_modules/src/ml/prediction_reussite.html#predire_reussite"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.ml.prediction_reussite.predire_reussite" title="Link to this definition"></a></dt>
+<span class="sig-prename descclassname"><span class="pre">src.ml.prediction_reussite.</span></span><span class="sig-name descname"><span class="pre">predire_reussite</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">etudiant</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">model_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="s"><span class="pre">'logistic'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'rf'</span></span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">float</span></span></span><a class="reference internal" href="../_modules/src/ml/prediction_reussite.html#predire_reussite"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.ml.prediction_reussite.predire_reussite" title="Link to this definition"></a></dt>
 <dd><p>Prédit le taux de réussite d”un étudiant</p>
 <ul class="simple">
 <li><p>Chargement du modèle (si pas déjà chargé)</p></li>
 <li><p>Prédiction</p></li>
 </ul>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">predire_reussite</span><span class="p">({</span>
+<span class="go">        &quot;gd_discipline&quot;: &quot;Lettres, langues et sciences humaines&quot;,</span>
+<span class="go">        &quot;discipline&quot;: &quot;Langues&quot;,</span>
+<span class="go">        &quot;sect_disciplinaire&quot;: &quot;Langues et littératures étrangères&quot;,</span>
+<span class="go">        &quot;serie_bac&quot;: &quot;BAC STMG&quot;,</span>
+<span class="go">        &quot;age_au_bac&quot;: &quot;A l&#39;heure ou en avance&quot;,</span>
+<span class="go">        &quot;sexe&quot;: &quot;Homme&quot;,</span>
+<span class="go">        &quot;mention_bac&quot;: &quot;Très bien&quot;,</span>
+<span class="go">        },</span>
+<span class="go">        &quot;logistic&quot;</span>
+<span class="go">)</span>
+<span class="go">0.5</span>
+</pre></div>
+</div>
 </dd></dl>
 
 </section>

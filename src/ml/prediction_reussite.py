@@ -97,6 +97,7 @@ def charger_modele(model_name: Literal["logistic", "rf"]) -> tuple[Any, list[str
 
 	- Essaie de charger le modèle
 	- Si le modèle n"est pas trouvé, entraine le modèle
+
 	Returns:
 		tuple[Any, list[str]]: Le modèle et la liste des colonnes pour l'encodage
 	"""
@@ -178,7 +179,7 @@ def prediction_reussite() -> dict:
 		dict: Un dictionnaire contenant le taux de réussite prédit.
 	
 	Examples:
-		>>> requests.get(f"{OUR_API}/ml/prediction_reussite?gd_discipline=Lettres, langues et sciences humaines&discipline=Langues&sect_disciplinaire=Langues et littératures étrangères&serie_bac=BAC STMG&age_au_bac=A l'heure ou en avance&sexe=Homme&mention_bac=Très bien&model_name=logistic").json()
+		>>> requests.get(f"http://localhost:5000/ml/prediction_reussite?gd_discipline=Lettres, langues et sciences humaines&discipline=Langues&sect_disciplinaire=Langues et littératures étrangères&serie_bac=BAC STMG&age_au_bac=A l'heure ou en avance&sexe=Homme&mention_bac=Très bien&model_name=logistic").json()
 		{'taux_reussite': 0.24319507790674746}
 	"""
 	etudiant: dict = {

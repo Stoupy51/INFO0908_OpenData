@@ -10,7 +10,7 @@ def get_reussite_licence() -> dict:
     Returns:
         dict: le nombre d'étudiants obtenant la licence en 3 ans / 4 ans / pas réussi
     Examples:
-        >>> requests.get(f"{OUR_API}/api/reussite_licence").json()
+        >>> requests.get(f"http://localhost:5000/api/reussite_licence").json()
         {'en 3 ans': 41922, 'en 4 ans': 18624, 'pas_reussi': 87295}
     """
     data = fetch_data("select=reussite_3_ans,reussite_4_ans,effectif_neobacheliers_reussite")
@@ -30,7 +30,7 @@ def get_taux_reussite_par_gd_discipline() -> dict:
     Returns:
         dict: le taux de réussite en licence par grandes disciplines
     Examples:
-        >>> requests.get(f"{OUR_API}/api/taux_reussite_licence/gd_discipline").json()
+        >>> requests.get(f"http://localhost:5000/api/taux_reussite_licence/gd_discipline").json()
         {'Droit, gestion, économie, AES': 40.88, 'Lettres, langues et sciences humaines': 42.46, 'STAPS': 40.1, 'Santé': 75.76, "Sciences et sciences de l'ingénieur": 37.38}
     """
     data = fetch_data("select=gd_discipline_lib,SUM(effectif_neobacheliers_reussite),SUM(reussite_3_4_ans)&group_by=gd_discipline_lib")
@@ -50,7 +50,7 @@ def get_taux_reussite_par_discipline() -> dict:
     Returns:
         dict: le taux de réussite en licence par discipline
     Examples:
-        >>> requests.get(f"{OUR_API}/api/taux_reussite_licence/discipline").json()
+        >>> requests.get(f"http://localhost:5000/api/taux_reussite_licence/discipline").json()
         {'Administration économique et sociale': 27.17, 'Droit, sciences politiques': 44.53, 'Langues': 39.86, 'Lettres, sciences du langage, arts': 43.95, 'Médecine': 75.76, 'Pluridisciplinaire lettres, langues, sciences humaines': 50.7, 'Pluridisciplinaire sciences': 38.2, 'STAPS': 40.1, "Sciences de la vie, de la terre et de l'univers": 40.12, 'Sciences fondamentales et applications': 34.52, 'Sciences humaines et sociales': 43.6, 'Sciences économiques, gestion': 39.77}
     """
     data = fetch_data("select=discipline_lib,SUM(effectif_neobacheliers_reussite),SUM(reussite_3_4_ans)&group_by=discipline_lib")
@@ -70,7 +70,7 @@ def get_taux_reussite_par_mention_bac() -> dict:
     Returns:
         dict: le taux de réussite en licence par mention au bac
     Examples:
-        >>> requests.get(f"{OUR_API}/api/taux_reussite_licence/mention_bac").json()
+        >>> requests.get(f"http://localhost:5000/api/taux_reussite_licence/mention_bac").json()
         {'Assez bien': 54.82, 'Bien': 69.76, 'Inconnue': 26.7, 'Passable deuxième groupe': 18.6, 'Passable premier groupe': 32.62, 'Très bien': 76.82}
     """
     data = fetch_data("select=mention_bac_lib,SUM(effectif_neobacheliers_reussite),SUM(reussite_3_4_ans)&group_by=mention_bac_lib")
@@ -90,7 +90,7 @@ def get_taux_reussite_par_type_bac() -> dict:
     Returns:
         dict: le taux de réussite en licence par type de bac
     Examples:
-        >>> requests.get(f"{OUR_API}/api/taux_reussite_licence/type_bac").json()
+        >>> requests.get(f"http://localhost:5000/api/taux_reussite_licence/type_bac").json()
         {'BAC ES': 52.1, 'BAC L': 46.67, 'BAC S': 52.12, 'BAC STMG': 14.07, 'BAC professionnel': 4.96, 'BAC technologique hors STMG': 18.15}
     """
     data = fetch_data("select=serie_bac_lib,SUM(effectif_neobacheliers_reussite),SUM(reussite_3_4_ans)&group_by=serie_bac_lib")

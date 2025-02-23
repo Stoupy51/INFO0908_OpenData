@@ -83,7 +83,8 @@
 <span class="sd">    Returns:</span>
 <span class="sd">        dict: le nombre d&#39;étudiants passant en L2 en 1 an / en 2 ans / le nombre d&#39;étudiants n&#39;étant pas passer en L2</span>
 <span class="sd">    Examples:</span>
-<span class="sd">        &gt;&gt;&gt; requests.get(f&quot;{OUR_API}/api/passage_l2/stats&quot;).json()</span>
+<span class="sd">        &gt;&gt;&gt; requests.get(f&quot;http://localhost:5000/api/passage_l2/stats&quot;).json()</span>
+<span class="sd">        {&#39;pas_passe&#39;: 75007, &#39;passage_en_l2_1_an&#39;: 65127, &#39;passage_en_l2_2_ans&#39;: 19632}</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">data</span> <span class="o">=</span> <span class="n">fetch_data</span><span class="p">(</span><span class="s2">&quot;select=passage_en_l2_1_an,passage_en_l2_2_ans,effectif_neobacheliers_passage&quot;</span><span class="p">)</span>
     <span class="n">result</span> <span class="o">=</span> <span class="p">{</span>
@@ -105,7 +106,8 @@
 <span class="sd">    Returns:</span>
 <span class="sd">        dict: le nombre d&#39;étudiants passant en L2 en 1 an / en 2 ans / le nombre d&#39;étudiants n&#39;étant pas passer en L2 par sexe</span>
 <span class="sd">    Examples:</span>
-<span class="sd">        &gt;&gt;&gt; requests.get(f&quot;{OUR_API}/api/passage_l2/sexe&quot;).json()</span>
+<span class="sd">        &gt;&gt;&gt; requests.get(f&quot;http://localhost:5000/api/passage_l2/sexe&quot;).json()</span>
+<span class="sd">        {&#39;Femme&#39;: {&#39;pas_passe&#39;: 41115, &#39;passage_en_l2_1_an&#39;: 42219, &#39;passage_en_l2_2_ans&#39;: 11363, &#39;taux_passage&#39;: 56.58257389357635}, &#39;Homme&#39;: {&#39;pas_passe&#39;: 33892, &#39;passage_en_l2_1_an&#39;: 22908, &#39;passage_en_l2_2_ans&#39;: 8269, &#39;taux_passage&#39;: 47.91375309287064}}</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">data</span> <span class="o">=</span> <span class="n">fetch_data</span><span class="p">(</span><span class="s2">&quot;select=sexe_lib,SUM(passage_en_l2_1_an),SUM(passage_en_l2_2_ans),SUM(effectif_neobacheliers_passage)&amp;group_by=sexe_lib&quot;</span><span class="p">)</span>
     <span class="n">result</span> <span class="o">=</span> <span class="p">{</span><span class="n">row</span><span class="p">[</span><span class="s1">&#39;sexe_lib&#39;</span><span class="p">]:</span> <span class="p">{</span>
@@ -127,7 +129,8 @@
 <span class="sd">    Returns:</span>
 <span class="sd">        dict: le nombre de passage en L2 en fonction du type de bac</span>
 <span class="sd">    Examples:</span>
-<span class="sd">        &gt;&gt;&gt; requests.get(f&quot;{OUR_API}/api/passage_l2/bac&quot;).json()</span>
+<span class="sd">        &gt;&gt;&gt; requests.get(f&quot;http://localhost:5000/api/passage_l2/bac&quot;).json()</span>
+<span class="sd">        {&#39;BAC ES&#39;: 29636.0, &#39;BAC L&#39;: 18860.0, &#39;BAC S&#39;: 29696.0, &#39;BAC STMG&#39;: 2732.0, &#39;BAC professionnel&#39;: 1187.0, &#39;BAC technologique hors STMG&#39;: 2648.0}</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">data</span> <span class="o">=</span> <span class="n">fetch_data</span><span class="p">(</span><span class="s2">&quot;select=serie_bac_lib,SUM(passage_en_l2_1_2_ans)&amp;group_by=serie_bac_lib&quot;</span><span class="p">)</span>
     <span class="n">result</span> <span class="o">=</span> <span class="p">{</span><span class="n">row</span><span class="p">[</span><span class="s1">&#39;serie_bac_lib&#39;</span><span class="p">]:</span> <span class="n">row</span><span class="p">[</span><span class="s1">&#39;SUM(passage_en_l2_1_2_ans)&#39;</span><span class="p">]</span> <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">data</span><span class="p">}</span>
@@ -144,7 +147,8 @@
 <span class="sd">    Returns:</span>
 <span class="sd">        dict: le nombre d&#39;étudiants passant en DUT après 1 an / 2 ans de licence</span>
 <span class="sd">    Examples:</span>
-<span class="sd">        &gt;&gt;&gt; requests.get(f&quot;{OUR_API}/api/passage_dut&quot;).json()</span>
+<span class="sd">        &gt;&gt;&gt; requests.get(f&quot;http://localhost:5000/api/passage_dut&quot;).json()</span>
+<span class="sd">        {&#39;après 1 an&#39;: 2814.0, &#39;après 2 ans&#39;: 848.0}</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">data</span> <span class="o">=</span> <span class="n">fetch_data</span><span class="p">(</span><span class="s2">&quot;select=SUM(reorientation_en_dut_1_an),SUM(reorientation_en_dut_2_ans)&quot;</span><span class="p">)</span>
     <span class="n">result</span> <span class="o">=</span> <span class="p">{</span>

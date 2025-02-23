@@ -19,7 +19,7 @@ import sys
 sys.path.insert(0, os.path.abspath('../..'))
 
 # Project information
-project = 'INFO0908_OpenData'
+project = '🎓 INFO0908_OpenData'
 copyright = '2024'
 author = 'INFO0908'
 
@@ -53,7 +53,8 @@ def generate_index_rst(readme_path: str, index_path: str) -> None:
         readme_content: str = f.read()
     
     # Extract sections while preserving emojis
-    overview_section: str = readme_content.split('# 📚 Utilisation')[1].split('\n#')[0].strip()
+    summary_section: str = readme_content.split('# 🎓 INFO0908_OpenData')[1].split('\n#')[0].strip().replace("<br>", "\n")
+    overview_section: str = readme_content.split('# 📚 Utilisation')[1].split('\n#')[0].strip().replace("<br>", "\n")
     file_tree_section: str = readme_content.split('# 📂 Structure du projet')[1].split('\n#')[0].strip()
     file_tree_section = file_tree_section.replace('```bash', '').replace('```', '').strip()
     file_tree_section = "\n".join([f"   {line}" for line in file_tree_section.split('\n')])
@@ -66,12 +67,13 @@ def generate_index_rst(readme_path: str, index_path: str) -> None:
     
     # Generate the RST content with emojis and proper title underlines
     rst_content: str = f"""
-🎓 Documentation INFO0908_OpenData
-================================
+🎓 INFO0908_OpenData
+====================
+{summary_section}
 
 📚 Overview
 -----------
-{overview_section.replace("<br>", " ")}
+{overview_section}
 
 🚀 Project Structure
 -------------------
