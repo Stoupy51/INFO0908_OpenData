@@ -8,7 +8,7 @@ import joblib
 
 from sklearn.model_selection import train_test_split  # Pour diviser les données
 from sklearn.metrics import accuracy_score  # Pour évaluer le modèle
-from sklearn.linear_model import LinearRegression  # Importer la régression linéaire
+from sklearn.linear_model import LogisticRegression  # Importer la régression logistique
 from sklearn.ensemble import RandomForestRegressor  # Importer la forêt aléatoire
 
 # Constantes
@@ -48,6 +48,9 @@ def entrainer_modeles() -> None:
 	# Préparation des données
 	X: pd.DataFrame = data[VARIABLES_UTILES]  # Variables indépendantes
 	y: pd.Series = data["taux_reussite"]  # Variable dépendante
+	
+	# Convert continuous target to binary for logistic regression
+	y_binary: pd.Series = (y > 0.5).astype(int)
 
 	# Convertir les variables qualitatives en variables numériques
 	X_encoded: pd.DataFrame = pd.get_dummies(X)
@@ -62,16 +65,17 @@ def entrainer_modeles() -> None:
 	y_test: pd.Series
 	X_train, X_test, y_train, y_test = train_test_split(X_encoded, y, test_size=0.2, random_state=42)
 
-	# Créer le modèle de régression linéaire et l'entraîner
-	model_linear: LinearRegression = LinearRegression()
-	model_linear.fit(X_train, y_train)
-
-	# Évaluer le modèle de régression linéaire
+	# Define categorial_y_test
 	categorial_y_test: pd.Series = y_test.apply(lambda x: 1 if x > 0.5 else 0)
-	y_pred_raw_linear: np.ndarray = model_linear.predict(X_test)
-	y_pred_linear: np.ndarray = np.where(y_pred_raw_linear > 0.5, 1, 0)
-	accuracy_linear: float = accuracy_score(categorial_y_test, y_pred_linear)
-	stp.info(f"Accuracy (Linear Regression): {accuracy_linear}")
+
+	# Créer le modèle de régression logistique et l'entraîner
+	model_logistic: LogisticRegression = LogisticRegression()
+	model_logistic.fit(X_train, y_binary[y_binary.index.isin(y_train.index)])  # Use binary values for training
+
+	# Évaluer le modèle de régression logistique
+	y_pred_logistic: np.ndarray = model_logistic.predict_proba(X_test)[:, 1]  # Probabilités pour la classe positive
+	accuracy_logistic: float = accuracy_score(categorial_y_test, np.where(y_pred_logistic > 0.5, 1, 0))
+	stp.info(f"Accuracy (Logistic Regression): {accuracy_logistic}")
 
 	# Créer le modèle de forêt aléatoire et l'entraîner
 	model_rf: RandomForestRegressor = RandomForestRegressor(random_state=42)
@@ -84,11 +88,11 @@ def entrainer_modeles() -> None:
 	stp.info(f"Accuracy (Random Forest): {accuracy_rf}")
 
 	# Sauvegarde des modèles
-	joblib.dump(model_linear, f"{MODELS_FOLDER}/linear.pkl")
+	joblib.dump(model_logistic, f"{MODELS_FOLDER}/logistic.pkl")
 	joblib.dump(model_rf, f"{MODELS_FOLDER}/rf.pkl")
 
 # Fonction pour charger le modèle
-def charger_modele(model_name: Literal["linear", "rf"]) -> tuple[Any, list[str]]:
+def charger_modele(model_name: Literal["logistic", "rf"]) -> tuple[Any, list[str]]:
 	""" Charge le modèle de prédiction du taux de réussite d"un étudiant
 
 	- Essaie de charger le modèle
@@ -107,18 +111,33 @@ def charger_modele(model_name: Literal["linear", "rf"]) -> tuple[Any, list[str]]
 	return model, colonnes
 
 # Fonction pour prédire la reussite d"un étudiant
-def predire_reussite(etudiant: dict, model_name: Literal["linear", "rf"]) -> float:
+@stp.handle_error()
+def predire_reussite(etudiant: dict, model_name: Literal["logistic", "rf"]) -> float:
 	""" Prédit le taux de réussite d"un étudiant
 
 	- Chargement du modèle (si pas déjà chargé)
 	- Prédiction
+
+	Examples:
+		>>> predire_reussite({
+			"gd_discipline": "Lettres, langues et sciences humaines",
+			"discipline": "Langues",
+			"sect_disciplinaire": "Langues et littératures étrangères",
+			"serie_bac": "BAC STMG",
+			"age_au_bac": "A l'heure ou en avance",
+			"sexe": "Homme",
+			"mention_bac": "Très bien",
+			},
+			"logistic"
+		)
+		0.5
 	"""
 	model: Any
 	colonnes: list[str]
 	model, colonnes = charger_modele(model_name)
 
 	# Préparation des données
-	etudiant_df: pd.DataFrame = pd.DataFrame(etudiant)
+	etudiant_df: pd.DataFrame = pd.DataFrame([etudiant])  # Wrap the dictionary in a list
 	etudiant_encoded: pd.DataFrame = pd.get_dummies(etudiant_df)
 	
 	# S'assurer que toutes les colonnes nécessaires sont présentes
@@ -130,6 +149,13 @@ def predire_reussite(etudiant: dict, model_name: Literal["linear", "rf"]) -> flo
 	etudiant_encoded = etudiant_encoded[colonnes]
 
 	# Prédiction
-	prediction: float = model.predict(etudiant_encoded)[0]
-	return prediction
+	if isinstance(model, LogisticRegression):
+		raw_prediction: float = model.predict_proba(etudiant_encoded)[:, 1][0]  # Get probability for the positive class
+	elif isinstance(model, RandomForestRegressor):
+		raw_prediction: float = model.predict(etudiant_encoded)[0]
+	else:
+		raise ValueError(f"Modèle inconnu: {type(model)}")
+
+	return raw_prediction
+
 
