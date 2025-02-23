@@ -174,6 +174,7 @@ def prediction_reussite() -> dict:
 		age_au_bac (str): L'âge de l'étudiant au moment du baccalauréat.
 		sexe (str): Le sexe de l'étudiant.
 		mention_bac (str): La mention obtenue au baccalauréat.
+		model_name (Literal["logistic", "rf"]): Le nom du modèle à utiliser.
 
 	Returns:
 		dict: Un dictionnaire contenant le taux de réussite prédit.
