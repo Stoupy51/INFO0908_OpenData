@@ -1,0 +1,186 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>src.l2_et_reorientation &mdash; INFO0908_OpenData  documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=e59714d7" />
+
+  
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=5929fcd5"></script>
+      <script src="../../_static/doctools.js?v=9a2dae69"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            INFO0908_OpenData
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../modules/src.html">src namespace</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">INFO0908_OpenData</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html">Module code</a></li>
+      <li class="breadcrumb-item active">src.l2_et_reorientation</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for src.l2_et_reorientation</h1><div class="highlight"><pre>
+<span></span>
+<span class="c1"># Imports</span>
+<span class="kn">from</span> <span class="nn">.shared_import</span> <span class="kn">import</span> <span class="o">*</span>
+
+<span class="c1"># Récupérer le nombre d’étudiant passant en L2 en 1 an / en 2 ans / le nombre d’étudiants n’étant pas passer en L2</span>
+<div class="viewcode-block" id="get_passage_l2_stats">
+<a class="viewcode-back" href="../../modules/src.l2_et_reorientation.html#src.l2_et_reorientation.get_passage_l2_stats">[docs]</a>
+<span class="nd">@app</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s1">&#39;/api/passage_l2/stats&#39;</span><span class="p">,</span> <span class="n">methods</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;GET&#39;</span><span class="p">])</span>
+<span class="k">def</span> <span class="nf">get_passage_l2_stats</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot; Récupérer le nombre d’étudiant passant en L2 en 1 an / en 2 ans / le nombre d’étudiants n’étant pas passer en L2</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        dict: le nombre d&#39;étudiants passant en L2 en 1 an / en 2 ans / le nombre d&#39;étudiants n&#39;étant pas passer en L2</span>
+<span class="sd">    Examples:</span>
+<span class="sd">        &gt;&gt;&gt; requests.get(f&quot;{OUR_API}/api/passage_l2/stats&quot;).json()</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="n">fetch_data</span><span class="p">(</span><span class="s2">&quot;select=passage_en_l2_1_an,passage_en_l2_2_ans,effectif_neobacheliers_passage&quot;</span><span class="p">)</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s1">&#39;passage_en_l2_1_an&#39;</span><span class="p">:</span> <span class="nb">int</span><span class="p">(</span><span class="nb">sum</span><span class="p">(</span><span class="nb">filter</span><span class="p">(</span><span class="kc">None</span><span class="p">,[</span><span class="n">row</span><span class="p">[</span><span class="s1">&#39;passage_en_l2_1_an&#39;</span><span class="p">]</span> <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">data</span><span class="p">]))),</span>
+        <span class="s1">&#39;passage_en_l2_2_ans&#39;</span><span class="p">:</span> <span class="nb">int</span><span class="p">(</span><span class="nb">sum</span><span class="p">(</span><span class="nb">filter</span><span class="p">(</span><span class="kc">None</span><span class="p">,[</span><span class="n">row</span><span class="p">[</span><span class="s1">&#39;passage_en_l2_2_ans&#39;</span><span class="p">]</span> <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">data</span><span class="p">]))),</span>
+        <span class="s1">&#39;pas_passe&#39;</span><span class="p">:</span> <span class="nb">sum</span><span class="p">(</span><span class="nb">filter</span><span class="p">(</span><span class="kc">None</span><span class="p">,[</span><span class="n">row</span><span class="p">[</span><span class="s1">&#39;effectif_neobacheliers_passage&#39;</span><span class="p">]</span> <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">data</span><span class="p">]))</span>
+    <span class="p">}</span>
+    <span class="n">result</span><span class="p">[</span><span class="s1">&#39;pas_passe&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">result</span><span class="p">[</span><span class="s1">&#39;pas_passe&#39;</span><span class="p">]</span> <span class="o">-</span> <span class="p">(</span><span class="n">result</span><span class="p">[</span><span class="s1">&#39;passage_en_l2_1_an&#39;</span><span class="p">]</span> <span class="o">+</span> <span class="n">result</span><span class="p">[</span><span class="s1">&#39;passage_en_l2_2_ans&#39;</span><span class="p">]))</span>
+    <span class="k">return</span> <span class="n">jsonify</span><span class="p">(</span><span class="n">result</span><span class="p">)</span></div>
+
+
+<span class="c1"># Passage en L2 (1 an, 2 ans, pas passe, taux de passage) par sexe</span>
+<div class="viewcode-block" id="get_passage_l2_par_sexe">
+<a class="viewcode-back" href="../../modules/src.l2_et_reorientation.html#src.l2_et_reorientation.get_passage_l2_par_sexe">[docs]</a>
+<span class="nd">@app</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s1">&#39;/api/passage_l2/sexe&#39;</span><span class="p">,</span> <span class="n">methods</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;GET&#39;</span><span class="p">])</span>
+<span class="k">def</span> <span class="nf">get_passage_l2_par_sexe</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot; Récupérer le nombre d&#39;étudiants passant en L2 en 1 an / en 2 ans / le nombre d&#39;étudiants n&#39;étant pas passer en L2 par sexe</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        dict: le nombre d&#39;étudiants passant en L2 en 1 an / en 2 ans / le nombre d&#39;étudiants n&#39;étant pas passer en L2 par sexe</span>
+<span class="sd">    Examples:</span>
+<span class="sd">        &gt;&gt;&gt; requests.get(f&quot;{OUR_API}/api/passage_l2/sexe&quot;).json()</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="n">fetch_data</span><span class="p">(</span><span class="s2">&quot;select=sexe_lib,SUM(passage_en_l2_1_an),SUM(passage_en_l2_2_ans),SUM(effectif_neobacheliers_passage)&amp;group_by=sexe_lib&quot;</span><span class="p">)</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="p">{</span><span class="n">row</span><span class="p">[</span><span class="s1">&#39;sexe_lib&#39;</span><span class="p">]:</span> <span class="p">{</span>
+        <span class="s1">&#39;passage_en_l2_1_an&#39;</span><span class="p">:</span> <span class="nb">int</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="s1">&#39;SUM(passage_en_l2_1_an)&#39;</span><span class="p">]),</span>
+        <span class="s1">&#39;passage_en_l2_2_ans&#39;</span><span class="p">:</span> <span class="nb">int</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="s1">&#39;SUM(passage_en_l2_2_ans)&#39;</span><span class="p">]),</span>
+        <span class="s1">&#39;pas_passe&#39;</span><span class="p">:</span> <span class="nb">int</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="s1">&#39;SUM(effectif_neobacheliers_passage)&#39;</span><span class="p">])</span> <span class="o">-</span> <span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="s1">&#39;SUM(passage_en_l2_1_an)&#39;</span><span class="p">])</span> <span class="o">+</span> <span class="nb">int</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="s1">&#39;SUM(passage_en_l2_2_ans)&#39;</span><span class="p">])),</span>
+        <span class="s1">&#39;taux_passage&#39;</span><span class="p">:</span> <span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="s1">&#39;SUM(passage_en_l2_1_an)&#39;</span><span class="p">])</span> <span class="o">+</span> <span class="nb">int</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="s1">&#39;SUM(passage_en_l2_2_ans)&#39;</span><span class="p">]))</span> <span class="o">/</span> <span class="nb">int</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="s1">&#39;SUM(effectif_neobacheliers_passage)&#39;</span><span class="p">])</span> <span class="o">*</span> <span class="mi">100</span>
+    <span class="p">}</span> <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">data</span><span class="p">}</span>
+    <span class="k">return</span> <span class="n">jsonify</span><span class="p">(</span><span class="n">result</span><span class="p">)</span></div>
+
+
+<span class="c1"># Récupérer le nombre de passage en L2 en fonction du type de bac</span>
+<div class="viewcode-block" id="get_passage_l2_par_bac">
+<a class="viewcode-back" href="../../modules/src.l2_et_reorientation.html#src.l2_et_reorientation.get_passage_l2_par_bac">[docs]</a>
+<span class="nd">@app</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s1">&#39;/api/passage_l2/bac&#39;</span><span class="p">,</span> <span class="n">methods</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;GET&#39;</span><span class="p">])</span>
+<span class="k">def</span> <span class="nf">get_passage_l2_par_bac</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot; Récupérer le nombre de passage en L2 en fonction du type de bac</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        dict: le nombre de passage en L2 en fonction du type de bac</span>
+<span class="sd">    Examples:</span>
+<span class="sd">        &gt;&gt;&gt; requests.get(f&quot;{OUR_API}/api/passage_l2/bac&quot;).json()</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="n">fetch_data</span><span class="p">(</span><span class="s2">&quot;select=serie_bac_lib,SUM(passage_en_l2_1_2_ans)&amp;group_by=serie_bac_lib&quot;</span><span class="p">)</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="p">{</span><span class="n">row</span><span class="p">[</span><span class="s1">&#39;serie_bac_lib&#39;</span><span class="p">]:</span> <span class="n">row</span><span class="p">[</span><span class="s1">&#39;SUM(passage_en_l2_1_2_ans)&#39;</span><span class="p">]</span> <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">data</span><span class="p">}</span>
+    <span class="k">return</span> <span class="n">jsonify</span><span class="p">(</span><span class="n">result</span><span class="p">)</span></div>
+
+
+<span class="c1"># Nombre d’étudiants passant en DUT après 1 an / 2 ans de licence</span>
+<div class="viewcode-block" id="get_passage_dut">
+<a class="viewcode-back" href="../../modules/src.l2_et_reorientation.html#src.l2_et_reorientation.get_passage_dut">[docs]</a>
+<span class="nd">@app</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s1">&#39;/api/passage_dut&#39;</span><span class="p">,</span> <span class="n">methods</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;GET&#39;</span><span class="p">])</span>
+<span class="k">def</span> <span class="nf">get_passage_dut</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot; Récupérer le nombre d&#39;étudiants passant en DUT après 1 an / 2 ans de licence</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        dict: le nombre d&#39;étudiants passant en DUT après 1 an / 2 ans de licence</span>
+<span class="sd">    Examples:</span>
+<span class="sd">        &gt;&gt;&gt; requests.get(f&quot;{OUR_API}/api/passage_dut&quot;).json()</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="n">fetch_data</span><span class="p">(</span><span class="s2">&quot;select=SUM(reorientation_en_dut_1_an),SUM(reorientation_en_dut_2_ans)&quot;</span><span class="p">)</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s2">&quot;après 1 an&quot;</span><span class="p">:</span> <span class="n">data</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s1">&#39;SUM(reorientation_en_dut_1_an)&#39;</span><span class="p">],</span>
+        <span class="s2">&quot;après 2 ans&quot;</span><span class="p">:</span> <span class="n">data</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s1">&#39;SUM(reorientation_en_dut_2_ans)&#39;</span><span class="p">]</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="n">jsonify</span><span class="p">(</span><span class="n">result</span><span class="p">)</span></div>
+
+
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -1,3 +1,12 @@
 
 stouputils
 flask
+pandas
+numpy
+scikit-learn
+joblib
+
+# Pour la documentation
+sphinx
+sphinx_rtd_theme
+
