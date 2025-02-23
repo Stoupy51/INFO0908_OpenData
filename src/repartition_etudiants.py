@@ -3,8 +3,8 @@
 from .shared_import import *
 
 # récupérer le nb d’hommes et de femmes
-@app.route('/api/nb-hommes-femmes/', methods=['GET'], defaults={'groupby': ""})
-@app.route('/api/nb-hommes-femmes/<string:groupby>', methods=['GET'])
+@app.route('/api/nb_hommes_femmes', methods=['GET'], defaults={'groupby': ""})
+@app.route('/api/nb_hommes_femmes/<string:groupby>', methods=['GET'])
 def get_nb_hommes(groupby: str) -> dict:
     """
     Récupère le nombre d'hommes et de femmes. Si groupby n'est pas spécifi, retourne le nombre total d'hommes et de femmes. 
@@ -19,6 +19,13 @@ def get_nb_hommes(groupby: str) -> dict:
         groupby (str): la colonne à grouper
     Returns:
         json: le nombre d'hommes et de femmes
+    Examples:
+        >>> requests.get(f"{OUR_API}/api/nb_hommes_femmes").json()
+        >>> requests.get(f"{OUR_API}/api/nb_hommes_femmes/gd_discipline").json()
+        >>> requests.get(f"{OUR_API}/api/nb_hommes_femmes/discipline").json()
+        >>> requests.get(f"{OUR_API}/api/nb_hommes_femmes/bac").json()
+        >>> requests.get(f"{OUR_API}/api/nb_hommes_femmes/mention_bac").json()
+
     """
 
     assert groupby in ["", "gd_discipline", "discipline", "bac", "mention_bac"], "Valeur incorrecte de group_by"
@@ -57,48 +64,56 @@ def get_nb_hommes(groupby: str) -> dict:
     return jsonify(resultat)
 
 # récupérer le nombre d’étudiants par grandes disciplines
-@app.route('/api/nb-etudiants-par-gd_discipline', methods=['GET'])
+@app.route('/api/nb_etudiants/gd_discipline', methods=['GET'])
 def get_nb_etudiants_par_gd_discipline() -> dict:
     """ Récupère le nombre d'étudiants par grandes disciplines
 
     Returns:
         dict: le nombre d'étudiants par grandes disciplines
+    Examples:
+        >>> requests.get(f"{OUR_API}/api/nb_etudiants/gd_discipline").json()
     """
     data = fetch_data("select=gd_discipline_lib,SUM(effectif_neobacheliers_passage),SUM(effectif_neobacheliers_reussite)&group_by=gd_discipline_lib")
     result = {row['gd_discipline_lib']: int(sum(filter(None,[row['SUM(effectif_neobacheliers_passage)'],row['SUM(effectif_neobacheliers_reussite)']]))) for row in data}
     return jsonify(result)
 
 # récupérer le nombre d’étudiants par disciplines
-@app.route('/api/nb-etudiants-par-discipline', methods=['GET'])
+@app.route('/api/nb_etudiants/discipline', methods=['GET'])
 def get_nb_etudiants_par_discipline() -> dict:
     """ Récupère le nombre d'étudiants par disciplines
 
     Returns:
         dict: le nombre d'étudiants par disciplines
+    Examples:
+        >>> requests.get(f"{OUR_API}/api/nb_etudiants/discipline").json()
     """
     data = fetch_data("select=discipline_lib,SUM(effectif_neobacheliers_passage),SUM(effectif_neobacheliers_reussite)&group_by=discipline_lib")
     result = {row['discipline_lib']: int(sum(filter(None,[row['SUM(effectif_neobacheliers_passage)'],row['SUM(effectif_neobacheliers_reussite)']]))) for row in data}
     return jsonify(result)
 
 # Récupérer le nombre d’étudiants par type de bac
-@app.route('/api/nb-etudiants-par-type-bac', methods=['GET'])
+@app.route('/api/nb_etudiants/type_bac', methods=['GET'])
 def get_nb_etudiants_par_type_bac() -> dict:
     """ Récupère le nombre d'étudiants par type de bac
 
     Returns:
         dict: le nombre d'étudiants par type de bac
+    Examples:
+        >>> requests.get(f"{OUR_API}/api/nb_etudiants/type_bac").json()
     """
     data = fetch_data("select=serie_bac_lib,SUM(effectif_neobacheliers_passage),SUM(effectif_neobacheliers_reussite)&group_by=serie_bac_lib")
     result = {row['serie_bac_lib']: int(sum(filter(None,[row['SUM(effectif_neobacheliers_passage)'],row['SUM(effectif_neobacheliers_reussite)']]))) for row in data}
     return jsonify(result)
 
 # Récupérer le nombre d’étudiants par mention au bac
-@app.route('/api/nb-etudiants-par-mention-bac', methods=['GET'])
+@app.route('/api/nb_etudiants/mention_bac', methods=['GET'])
 def get_nb_etudiants_par_mention_bac() -> dict:
     """ Récupère le nombre d'étudiants par mention au bac
 
     Returns:
         dict: le nombre d'étudiants par mention au bac
+    Examples:
+        >>> requests.get(f"{OUR_API}/api/nb_etudiants/mention_bac").json()
     """
     data = fetch_data("select=mention_bac_lib,SUM(effectif_neobacheliers_passage),SUM(effectif_neobacheliers_reussite)&group_by=mention_bac_lib")
     result = {row['mention_bac_lib']: int(sum(filter(None,[row['SUM(effectif_neobacheliers_passage)'],row['SUM(effectif_neobacheliers_reussite)']]))) for row in data}

@@ -1,14 +1,21 @@
 
 # Imports
-from flask import Flask, request, jsonify
 import requests
+import stouputils as stp
+import os
+from typing import Literal, Any
+from flask import Flask, request, jsonify
+
 
 # Constants
+ROOT: str = stp.clean_path(os.path.dirname(os.path.abspath(__file__)))
 API_URL: str = "https://data.enseignementsup-recherche.gouv.fr/api/explore/v2.1/catalog/datasets/fr-esr-parcours-et-reussite-des-bacheliers-en-licence"
 OUR_API: str = "http://localhost:5000/"
 
+
 # Flask app
-app = Flask(__name__)
+app: Flask = Flask(__name__)
+
 
 # Fonction pour récupérer les données de l'API
 def fetch_data(query: str) -> list[dict]:
