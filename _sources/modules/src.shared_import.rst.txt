@@ -1,0 +1,8 @@
+src.shared\_import module
+=========================
+
+.. automodule:: src.shared_import
+   :members:
+   :private-members:
+   :show-inheritance:
+   :undoc-members:

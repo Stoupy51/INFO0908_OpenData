@@ -1,0 +1,8 @@
+src.reussite\_licence module
+============================
+
+.. automodule:: src.reussite_licence
+   :members:
+   :private-members:
+   :show-inheritance:
+   :undoc-members:

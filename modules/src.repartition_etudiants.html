@@ -1,0 +1,242 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>src.repartition_etudiants module &mdash; 🎓 INFO0908_OpenData  documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=5929fcd5"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="src.reussite_licence module" href="src.reussite_licence.html" />
+    <link rel="prev" title="src.redoublement module" href="src.redoublement.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            🎓 INFO0908_OpenData
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="src.html">src namespace</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="src.html#subpackages">Subpackages</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="src.html#submodules">Submodules</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="src.general.html">src.general module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="src.l2_et_reorientation.html">src.l2_et_reorientation module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="src.lists.html">src.lists module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="src.redoublement.html">src.redoublement module</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">src.repartition_etudiants module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#src.repartition_etudiants.get_nb_etudiants_par_discipline"><code class="docutils literal notranslate"><span class="pre">get_nb_etudiants_par_discipline()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#src.repartition_etudiants.get_nb_etudiants_par_gd_discipline"><code class="docutils literal notranslate"><span class="pre">get_nb_etudiants_par_gd_discipline()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#src.repartition_etudiants.get_nb_etudiants_par_mention_bac"><code class="docutils literal notranslate"><span class="pre">get_nb_etudiants_par_mention_bac()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#src.repartition_etudiants.get_nb_etudiants_par_type_bac"><code class="docutils literal notranslate"><span class="pre">get_nb_etudiants_par_type_bac()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#src.repartition_etudiants.get_nb_hommes"><code class="docutils literal notranslate"><span class="pre">get_nb_hommes()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="src.reussite_licence.html">src.reussite_licence module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="src.shared_import.html">src.shared_import module</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">🎓 INFO0908_OpenData</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="src.html">src namespace</a></li>
+      <li class="breadcrumb-item active">src.repartition_etudiants module</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/modules/src.repartition_etudiants.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="module-src.repartition_etudiants">
+<span id="src-repartition-etudiants-module"></span><h1>src.repartition_etudiants module<a class="headerlink" href="#module-src.repartition_etudiants" title="Link to this heading"></a></h1>
+<dl class="py function">
+<dt class="sig sig-object py" id="src.repartition_etudiants.get_nb_etudiants_par_discipline">
+<span class="sig-prename descclassname"><span class="pre">src.repartition_etudiants.</span></span><span class="sig-name descname"><span class="pre">get_nb_etudiants_par_discipline</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">dict</span></span></span><a class="reference internal" href="../_modules/src/repartition_etudiants.html#get_nb_etudiants_par_discipline"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.repartition_etudiants.get_nb_etudiants_par_discipline" title="Link to this definition"></a></dt>
+<dd><p>Récupère le nombre d’étudiants par disciplines</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>le nombre d’étudiants par disciplines</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>dict</p>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;http://localhost:5000/api/nb_etudiants/discipline&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
+<span class="go">{&#39;Administration économique et sociale&#39;: 15262, &#39;Droit, sciences politiques&#39;: 62922, &#39;Langues&#39;: 42667, &#39;Lettres, sciences du langage, arts&#39;: 23879, &#39;Médecine&#39;: 54, &#39;Pluridisciplinaire lettres, langues, sciences humaines&#39;: 1159, &#39;Pluridisciplinaire sciences&#39;: 12380, &#39;STAPS&#39;: 26080, &quot;Sciences de la vie, de la terre et de l&#39;univers&quot;: 16165, &#39;Sciences fondamentales et applications&#39;: 20566, &#39;Sciences humaines et sociales&#39;: 58867, &#39;Sciences économiques, gestion&#39;: 27606}</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="src.repartition_etudiants.get_nb_etudiants_par_gd_discipline">
+<span class="sig-prename descclassname"><span class="pre">src.repartition_etudiants.</span></span><span class="sig-name descname"><span class="pre">get_nb_etudiants_par_gd_discipline</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">dict</span></span></span><a class="reference internal" href="../_modules/src/repartition_etudiants.html#get_nb_etudiants_par_gd_discipline"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.repartition_etudiants.get_nb_etudiants_par_gd_discipline" title="Link to this definition"></a></dt>
+<dd><p>Récupère le nombre d’étudiants par grandes disciplines</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>le nombre d’étudiants par grandes disciplines</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>dict</p>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;http://localhost:5000/api/nb_etudiants/gd_discipline&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
+<span class="go">{&#39;Droit, gestion, économie, AES&#39;: 105790, &#39;Lettres, langues et sciences humaines&#39;: 126572, &#39;STAPS&#39;: 26080, &#39;Santé&#39;: 54, &quot;Sciences et sciences de l&#39;ingénieur&quot;: 49111}</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="src.repartition_etudiants.get_nb_etudiants_par_mention_bac">
+<span class="sig-prename descclassname"><span class="pre">src.repartition_etudiants.</span></span><span class="sig-name descname"><span class="pre">get_nb_etudiants_par_mention_bac</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">dict</span></span></span><a class="reference internal" href="../_modules/src/repartition_etudiants.html#get_nb_etudiants_par_mention_bac"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.repartition_etudiants.get_nb_etudiants_par_mention_bac" title="Link to this definition"></a></dt>
+<dd><p>Récupère le nombre d’étudiants par mention au bac</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>le nombre d’étudiants par mention au bac</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>dict</p>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;http://localhost:5000/api/nb_etudiants/mention_bac&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
+<span class="go">{&#39;Assez bien&#39;: 82390, &#39;Bien&#39;: 35008, &#39;Inconnue&#39;: 10096, &#39;Passable deuxième groupe&#39;: 46741, &#39;Passable premier groupe&#39;: 121895, &#39;Très bien&#39;: 11477}</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="src.repartition_etudiants.get_nb_etudiants_par_type_bac">
+<span class="sig-prename descclassname"><span class="pre">src.repartition_etudiants.</span></span><span class="sig-name descname"><span class="pre">get_nb_etudiants_par_type_bac</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">dict</span></span></span><a class="reference internal" href="../_modules/src/repartition_etudiants.html#get_nb_etudiants_par_type_bac"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.repartition_etudiants.get_nb_etudiants_par_type_bac" title="Link to this definition"></a></dt>
+<dd><p>Récupère le nombre d’étudiants par type de bac</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>le nombre d’étudiants par type de bac</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>dict</p>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;http://localhost:5000/api/nb_etudiants/type_bac&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
+<span class="go">{&#39;BAC ES&#39;: 92196, &#39;BAC L&#39;: 59524, &#39;BAC S&#39;: 80194, &#39;BAC STMG&#39;: 27674, &#39;BAC professionnel&#39;: 29461, &#39;BAC technologique hors STMG&#39;: 18558}</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="src.repartition_etudiants.get_nb_hommes">
+<span class="sig-prename descclassname"><span class="pre">src.repartition_etudiants.</span></span><span class="sig-name descname"><span class="pre">get_nb_hommes</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">groupby</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">dict</span></span></span><a class="reference internal" href="../_modules/src/repartition_etudiants.html#get_nb_hommes"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.repartition_etudiants.get_nb_hommes" title="Link to this definition"></a></dt>
+<dd><p>Récupère le nombre d’hommes et de femmes. Si groupby n’est pas spécifi, retourne le nombre total d’hommes et de femmes.
+Sinon, retourne le nombre d’hommes et de femmes regroupé par la colonne groupby.
+Les valeurs supportées pour groupby sont:
+- “gd_discipline”
+- “discipline”
+- “bac”
+- “mention_bac”</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>groupby</strong> (<em>str</em>) – la colonne à grouper</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>le nombre d’hommes et de femmes</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>json</p>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;http://localhost:5000/api/nb_hommes_femmes&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
+<span class="go">{&#39;femmes&#39;: 181739, &#39;hommes&#39;: 125868}</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;http://localhost:5000/api/nb_hommes_femmes/gd_discipline&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
+<span class="go">{&#39;Droit, gestion, économie, AES&#39;: {&#39;femmes&#39;: 62742, &#39;hommes&#39;: 43048}, &#39;Lettres, langues et sciences humaines&#39;: {&#39;femmes&#39;: 90630, &#39;hommes&#39;: 35942}, &#39;STAPS&#39;: {&#39;femmes&#39;: 6806, &#39;hommes&#39;: 19274}, &#39;Santé&#39;: {&#39;femmes&#39;: 30, &#39;hommes&#39;: 24}, &quot;Sciences et sciences de l&#39;ingénieur&quot;: {&#39;femmes&#39;: 21531, &#39;hommes&#39;: 27580}}</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;http://localhost:5000/api/nb_hommes_femmes/discipline&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">json</span><span class="p">()[</span><span class="s2">&quot;Administration économique et sociale&quot;</span><span class="p">]</span>
+<span class="go">{&#39;femmes&#39;: 8912, &#39;hommes&#39;: 6350}</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;http://localhost:5000/api/nb_hommes_femmes/bac&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
+<span class="go">{&#39;BAC ES&#39;: {&#39;femmes&#39;: 56000, &#39;hommes&#39;: 36196}, &#39;BAC L&#39;: {&#39;femmes&#39;: 46807, &#39;hommes&#39;: 12717}, &#39;BAC S&#39;: {&#39;femmes&#39;: 37515, &#39;hommes&#39;: 42679}, &#39;BAC STMG&#39;: {&#39;femmes&#39;: 14661, &#39;hommes&#39;: 13013}, &#39;BAC professionnel&#39;: {&#39;femmes&#39;: 15950, &#39;hommes&#39;: 13511}, &#39;BAC technologique hors STMG&#39;: {&#39;femmes&#39;: 10806, &#39;hommes&#39;: 7752}}</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;http://localhost:5000/api/nb_hommes_femmes/mention_bac&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
+<span class="go">{&#39;Assez bien&#39;: {&#39;femmes&#39;: 50947, &#39;hommes&#39;: 31443}, &#39;Bien&#39;: {&#39;femmes&#39;: 23755, &#39;hommes&#39;: 11253}, &#39;Inconnue&#39;: {&#39;femmes&#39;: 5878, &#39;hommes&#39;: 4218}, &#39;Passable deuxième groupe&#39;: {&#39;femmes&#39;: 24558, &#39;hommes&#39;: 22183}, &#39;Passable premier groupe&#39;: {&#39;femmes&#39;: 68352, &#39;hommes&#39;: 53543}, &#39;Très bien&#39;: {&#39;femmes&#39;: 8249, &#39;hommes&#39;: 3228}}</span>
+</pre></div>
+</div>
+</dd></dl>
+
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="src.redoublement.html" class="btn btn-neutral float-left" title="src.redoublement module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="src.reussite_licence.html" class="btn btn-neutral float-right" title="src.reussite_licence module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

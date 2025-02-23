@@ -1,0 +1,8 @@
+src.general module
+==================
+
+.. automodule:: src.general
+   :members:
+   :private-members:
+   :show-inheritance:
+   :undoc-members:

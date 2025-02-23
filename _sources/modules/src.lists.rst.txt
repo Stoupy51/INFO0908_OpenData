@@ -1,0 +1,8 @@
+src.lists module
+================
+
+.. automodule:: src.lists
+   :members:
+   :private-members:
+   :show-inheritance:
+   :undoc-members:

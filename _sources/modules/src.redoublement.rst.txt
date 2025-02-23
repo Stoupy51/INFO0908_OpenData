@@ -1,0 +1,8 @@
+src.redoublement module
+=======================
+
+.. automodule:: src.redoublement
+   :members:
+   :private-members:
+   :show-inheritance:
+   :undoc-members:

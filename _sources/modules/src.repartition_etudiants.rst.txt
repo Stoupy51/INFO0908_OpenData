@@ -1,0 +1,8 @@
+src.repartition\_etudiants module
+=================================
+
+.. automodule:: src.repartition_etudiants
+   :members:
+   :private-members:
+   :show-inheritance:
+   :undoc-members:
