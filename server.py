@@ -2,11 +2,12 @@
 # Imports
 from src.shared_import import *
 from src.general import *
-from src.lists import *
+#from src.lists import *
 from src.repartition_etudiants import *
 from src.l2_et_reorientation import *
 from src.reussite_licence import *
 from src.redoublement import *
+from src.ml.prediction_reussite import *
 
 # Liste des variables:
 # gd_discipline
@@ -39,6 +40,7 @@ from src.redoublement import *
 # reussite_3_4_ans
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    entrainer_modeles()
+    #app.run(debug=True)
 
 
