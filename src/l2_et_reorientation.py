@@ -11,6 +11,7 @@ def get_passage_l2_stats() -> dict:
         dict: le nombre d'étudiants passant en L2 en 1 an / en 2 ans / le nombre d'étudiants n'étant pas passer en L2
     Examples:
         >>> requests.get(f"{OUR_API}/api/passage_l2/stats").json()
+        {'pas_passe': 75007, 'passage_en_l2_1_an': 65127, 'passage_en_l2_2_ans': 19632}
     """
     data = fetch_data("select=passage_en_l2_1_an,passage_en_l2_2_ans,effectif_neobacheliers_passage")
     result = {
@@ -30,6 +31,7 @@ def get_passage_l2_par_sexe() -> dict:
         dict: le nombre d'étudiants passant en L2 en 1 an / en 2 ans / le nombre d'étudiants n'étant pas passer en L2 par sexe
     Examples:
         >>> requests.get(f"{OUR_API}/api/passage_l2/sexe").json()
+        {'Femme': {'pas_passe': 41115, 'passage_en_l2_1_an': 42219, 'passage_en_l2_2_ans': 11363, 'taux_passage': 56.58257389357635}, 'Homme': {'pas_passe': 33892, 'passage_en_l2_1_an': 22908, 'passage_en_l2_2_ans': 8269, 'taux_passage': 47.91375309287064}}
     """
     data = fetch_data("select=sexe_lib,SUM(passage_en_l2_1_an),SUM(passage_en_l2_2_ans),SUM(effectif_neobacheliers_passage)&group_by=sexe_lib")
     result = {row['sexe_lib']: {
@@ -49,6 +51,7 @@ def get_passage_l2_par_bac() -> dict:
         dict: le nombre de passage en L2 en fonction du type de bac
     Examples:
         >>> requests.get(f"{OUR_API}/api/passage_l2/bac").json()
+        {'BAC ES': 29636.0, 'BAC L': 18860.0, 'BAC S': 29696.0, 'BAC STMG': 2732.0, 'BAC professionnel': 1187.0, 'BAC technologique hors STMG': 2648.0}
     """
     data = fetch_data("select=serie_bac_lib,SUM(passage_en_l2_1_2_ans)&group_by=serie_bac_lib")
     result = {row['serie_bac_lib']: row['SUM(passage_en_l2_1_2_ans)'] for row in data}
@@ -63,6 +66,7 @@ def get_passage_dut() -> dict:
         dict: le nombre d'étudiants passant en DUT après 1 an / 2 ans de licence
     Examples:
         >>> requests.get(f"{OUR_API}/api/passage_dut").json()
+        {'après 1 an': 2814.0, 'après 2 ans': 848.0}
     """
     data = fetch_data("select=SUM(reorientation_en_dut_1_an),SUM(reorientation_en_dut_2_ans)")
     result = {

@@ -158,4 +158,42 @@ def predire_reussite(etudiant: dict, model_name: Literal["logistic", "rf"]) -> f
 
 	return raw_prediction
 
+@app.route("/ml/prediction_reussite", methods=["GET"])
+def prediction_reussite() -> dict:
+	""" Prédit le taux de réussite d'un étudiant à partir des données fournies.
+
+	Cette fonction reçoit les informations d'un étudiant via des paramètres de requête
+	et utilise un modèle préalablement entraîné pour prédire le taux de réussite.
+
+	Args:
+		gd_discipline (str): La grande discipline de l'étudiant.
+		discipline (str): La discipline de l'étudiant.
+		sect_disciplinaire (str): Le secteur disciplinaire de l'étudiant.
+		serie_bac (str): La série du baccalauréat de l'étudiant.
+		age_au_bac (str): L'âge de l'étudiant au moment du baccalauréat.
+		sexe (str): Le sexe de l'étudiant.
+		mention_bac (str): La mention obtenue au baccalauréat.
+
+	Returns:
+		dict: Un dictionnaire contenant le taux de réussite prédit.
+	
+	Examples:
+		>>> requests.get(f"{OUR_API}/ml/prediction_reussite?gd_discipline=Lettres, langues et sciences humaines&discipline=Langues&sect_disciplinaire=Langues et littératures étrangères&serie_bac=BAC STMG&age_au_bac=A l'heure ou en avance&sexe=Homme&mention_bac=Très bien&model_name=logistic").json()
+		{'taux_reussite': 0.24319507790674746}
+	"""
+	etudiant: dict = {
+		"gd_discipline": request.args.get("gd_discipline"),
+		"discipline": request.args.get("discipline"),
+		"sect_disciplinaire": request.args.get("sect_disciplinaire"),
+		"serie_bac": request.args.get("serie_bac"),
+		"age_au_bac": request.args.get("age_au_bac"),
+		"sexe": request.args.get("sexe"),
+		"mention_bac": request.args.get("mention_bac"),
+	}
+	for key, value in etudiant.items():
+		if value is None:
+			raise ValueError(f"Le paramètre {key} est requis")
+	model_name: str = request.args.get("model_name", "logistic")
+	proba: float = predire_reussite(etudiant, model_name)
+	return {"taux_reussite": proba}
 

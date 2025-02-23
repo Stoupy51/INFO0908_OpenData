@@ -2,7 +2,7 @@
 # Imports
 from src.shared_import import *
 from src.general import *
-#from src.lists import *
+from src.lists import *
 from src.repartition_etudiants import *
 from src.l2_et_reorientation import *
 from src.reussite_licence import *
@@ -40,21 +40,6 @@ from src.ml.prediction_reussite import *
 # reussite_3_4_ans
 
 if __name__ == '__main__':
-    #entrainer_modeles()
-
-    for model_name in ["logistic", "rf"]:
-        proba: float = predire_reussite({
-            "gd_discipline": "Lettres, langues et sciences humaines",
-            "discipline": "Langues",
-            "sect_disciplinaire": "Langues et littératures étrangères",
-            "serie_bac": "BAC STMG",
-            "age_au_bac": "A l'heure ou en avance",
-            "sexe": "Homme",
-            "mention_bac": "Très bien",
-            },
-            model_name
-        )
-        stp.info(f"Probabilité de réussite ({model_name}): {proba}")
-    #app.run(debug=True)
+    app.run(debug=True)
 
 
