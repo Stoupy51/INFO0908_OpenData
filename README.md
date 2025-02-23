@@ -3,7 +3,8 @@
 
 Basé sur une API, Parcours et réussite des bachelières et bacheliers inscrits pour la première fois en licence.<br>
 L'API sur laquelle le projet est basé est disponible à l'adresse suivante : https://data.enseignementsup-recherche.gouv.fr/explore/dataset/fr-esr-parcours-et-reussite-des-bacheliers-en-licence/table/?sort=redoublement_en_l1<br>
-Je vous conseille de regarder à quoi ressemble les données grâce à ce lien ou avec notre [documentation](https://stoupy51.github.io/INFO0908_OpenData/index.html).
+Je vous conseille de regarder à quoi ressemble les données grâce à ce lien ou avec notre documentation :<br>
+(https://stoupy51.github.io/INFO0908_OpenData/index.html).
 
 ## 🛠️ Installation
 
