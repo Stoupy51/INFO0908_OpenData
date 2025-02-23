@@ -4,7 +4,8 @@ from flask import Flask, request, jsonify
 import requests
 
 # Constants
-API_URL = "https://data.enseignementsup-recherche.gouv.fr/api/explore/v2.1/catalog/datasets/fr-esr-parcours-et-reussite-des-bacheliers-en-licence"
+API_URL: str = "https://data.enseignementsup-recherche.gouv.fr/api/explore/v2.1/catalog/datasets/fr-esr-parcours-et-reussite-des-bacheliers-en-licence"
+OUR_API: str = "http://localhost:5000/"
 
 # Flask app
 app = Flask(__name__)
